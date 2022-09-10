@@ -9,7 +9,7 @@
 		"@testing-library/user-event": "^13.5.0",
 		"@types/jest": "^27.5.2",
 		"@types/node": "^16.11.58",
-		"@types/react": "^18.0.18",
+		"@types/react": "^18.0.19",
 		"@types/react-dom": "^18.0.6",
 		"antd": "^4.23.1",
 		"craco-less": "^2.0.0",
@@ -45,5 +45,31 @@
 			"last 1 firefox version",
 			"last 1 safari version"
 		]
+	},
+	"devDependencies": {
+		"@semantic-release/changelog": "^6.0.1",
+		"@semantic-release/git": "^10.0.1",
+		"@semantic-release/github": "^8.0.6",
+		"@semantic-release/npm": "^9.0.1",
+		"@semantic-release/release-notes-generator": "^10.0.3",
+		"@typescript-eslint/eslint-plugin": "^5.36.2",
+		"@typescript-eslint/parser": "^5.36.2",
+		"eslint": "^8.23.0",
+		"eslint-config-google": "^0.14.0",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-import-resolver-typescript": "^3.5.1",
+		"eslint-plugin-import": "^2.26.0",
+		"eslint-plugin-jsonc": "^2.4.0",
+		"eslint-plugin-no-secrets": "^0.8.9",
+		"eslint-plugin-no-unsanitized": "^4.0.1",
+		"eslint-plugin-node": "^11.1.0",
+		"eslint-plugin-prettier": "^4.2.1",
+		"eslint-plugin-react": "^7.31.8",
+		"eslint-plugin-react-hooks": "^4.6.0",
+		"eslint-plugin-react-native": "^4.0.0",
+		"eslint-plugin-sonarjs": "^0.15.0",
+		"prettier": "^2.7.1",
+		"prettier-eslint": "^15.0.1",
+		"semantic-release": "^19.0.5"
 	}
 }
