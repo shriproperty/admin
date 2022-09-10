@@ -1,35 +1,19 @@
 import { Table, Tag } from "antd";
 import { PresetColorType } from "antd/lib/_util/colors";
+import { useEffect } from "react";
+import { useAppDispatch } from "../../hooks/useAddDispatch";
+import { useAppSelector } from "../../hooks/useAppSelector";
 import { EContactStatus } from "../../types/enum";
-import { IContact } from "../../types/interface";
+import { TRootState } from "../../types/types";
+import { fetchAllContacts } from "../../actions/contacts.action";
 
 function Contacts() {
-	const dataSource: IContact[] = [
-		{
-			name: "Ayush Chugh",
-			email: "email@example.com",
-			phone: 1234567890,
-			subject: "Hello",
-			message: "Message",
-			status: EContactStatus["Pending"],
-		},
-		{
-			name: "Ayush Chugh",
-			email: "email@example.com",
-			phone: 1234567890,
-			subject: "Hello",
-			message: "Message",
-			status: EContactStatus["In Progress"],
-		},
-		{
-			name: "Ayush Chugh",
-			email: "email@example.com",
-			phone: 1234567890,
-			subject: "Hello",
-			message: "Message",
-			status: EContactStatus["Completed"],
-		},
-	];
+	const dispatch = useAppDispatch();
+	const { getLoading, records } = useAppSelector((state: TRootState) => state.contacts);
+
+	useEffect(() => {
+		dispatch(fetchAllContacts());
+	}, [dispatch]);
 
 	const columns = [
 		{
@@ -70,7 +54,7 @@ function Contacts() {
 
 	return (
 		<main className="px-16 py-10">
-			<Table dataSource={dataSource} columns={columns} />
+			<Table loading={getLoading} dataSource={records} columns={columns} />
 		</main>
 	);
 }

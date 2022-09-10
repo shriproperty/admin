@@ -4,7 +4,7 @@
 		"body": [
 			"import { createSlice } from '@reduxjs/toolkit';",
 			"",
-			"interface InitialState {",
+			"export interface I${2}State {",
 			"${3}",
 			"}",
 			"",
