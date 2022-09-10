@@ -1,0 +1,100 @@
+{
+	"env": {
+		"browser": true,
+		"es2021": true,
+		"jest": true
+	},
+	"parser": "@typescript-eslint/parser",
+	"plugins": [
+		"react",
+		"@typescript-eslint",
+		"react-hooks",
+		"prettier",
+		"sonarjs",
+		"no-secrets",
+		"jsonc",
+		"no-unsanitized",
+		"@typescript-eslint"
+	],
+	"extends": [
+		"plugin:react/recommended",
+		"google",
+		"prettier",
+		"plugin:jsonc/base",
+		"plugin:no-unsanitized/DOM",
+		"plugin:prettier/recommended",
+		"plugin:sonarjs/recommended",
+		"plugin:@typescript-eslint/recommended"
+	],
+	"parserOptions": {
+		"ecmaFeatures": {
+			"jsx": true
+		},
+		"ecmaVersion": "latest",
+		"sourceType": "module"
+	},
+	"settings": {
+		"import/resolver": {
+			"typescript": {}
+		}
+	},
+
+	"rules": {
+		"semi": "error",
+		"no-console": "error",
+		"valid-jsdoc": "off",
+		"linebreak-style": "off",
+		"@typescript-eslint/no-explicit-any": "off",
+		"react/destructuring-assignment": "error",
+		"object-curly-spacing": "off",
+		"indent": "off",
+		"jsx-quotes": ["error", "prefer-double"],
+		"no-tabs": "off",
+		"space-infix-ops": "off",
+		"no-trailing-spaces": "error",
+		"space-before-blocks": "error",
+		"react/react-in-jsx-scope": "off",
+		"camelcase": "error",
+		"quotes": "off",
+		"no-duplicate-imports": "error",
+		"no-secrets/no-secrets": "error",
+		"spaced-comment": "off",
+		"prefer-destructuring": ["error", { "object": true, "array": true }],
+		"no-unused-vars": "off",
+		"@typescript-eslint/no-unused-vars": ["error"],
+		"comma-dangle": "off",
+		"new-cap": "off",
+		"require-await": "error",
+		"require-jsdoc": "off",
+		"sonarjs/cognitive-complexity": "off",
+		"sonarjs/no-duplicate-string": "off",
+		"sonarjs/no-identical-functions": "off",
+		"sonarjs/no-nested-template-literals": "off",
+		"react-hooks/rules-of-hooks": "error",
+		"guard-for-in": "off",
+		"@typescript-eslint/quotes": ["error", "double"],
+		"react-hooks/exhaustive-deps": "warn",
+		"@typescript-eslint/explicit-function-return-type": "off",
+		"react/boolean-prop-naming": "error",
+		"react/hook-use-state": "error",
+		"react/no-access-state-in-setstate": "error",
+		"react/no-children-prop": "error",
+		"react/no-unknown-property": "error",
+		"react/no-unused-prop-types": "error",
+		"react/no-unused-state": "error",
+		"react/prop-types": "error",
+		"react/require-default-props": [
+			"error",
+			{
+				"functions": "defaultArguments"
+			}
+		],
+		"prettier/prettier": [
+			"error",
+			{
+				"endOfLine": "auto",
+				"useTabs": true
+			}
+		]
+	}
+}
