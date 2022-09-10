@@ -1,0 +1,34 @@
+{
+	"todo": {
+		"prefix": "sp-todo",
+		"body": ["//TODO: ${1:write here}"],
+		"description": "Write Todo"
+	},
+	"note": {
+		"prefix": "sp-note",
+		"body": ["//NOTE: ${1:write here}"],
+		"description": "Write Note"
+	},
+	"fixme": {
+		"prefix": "sp-fixme",
+		"body": ["//FIXME: ${1:write here}"],
+		"description": "Write fixme"
+	},
+	"review": {
+		"prefix": "sp-review",
+		"body": ["//REVIEW: ${1:write here}"],
+		"description": "Write review"
+	},
+	"warning": {
+		"prefix": "sp-warning",
+		"body": ["//WARNING: ${1:write here}"],
+		"description": "Write warning"
+	},
+	"anchor": {
+		"prefix": "sp-anchor",
+		"body": [
+			"/* --------------------------------- ANCHOR ${1: write here} --------------------------------- */"
+		],
+		"description": "Add an anchor"
+	}
+}
