@@ -1,3 +1,4 @@
 {
-	"conventionalCommits.scopes": ["style"]
+	"conventionalCommits.scopes": ["style", "API integration"],
+	"cSpell.words": ["IAPI", "reduxjs"]
 }

@@ -1,0 +1,26 @@
+{
+	"createSlice": {
+		"prefix": "sp-create-redux-slice",
+		"body": [
+			"import { createSlice } from '@reduxjs/toolkit';",
+			"",
+			"export interface I${2}State {",
+			"${3}",
+			"}",
+			"",
+			"const initialState: InitialState = {",
+			"   value: ${4:[]},",
+			"};",
+			"",
+			"const ${2:title}Slice = createSlice({",
+			"   name: '${1:state name}',",
+			"   initialState,",
+			"   reducers: {},",
+			"});",
+			"",
+			"export const ${2:title}Actions = ${2:title}Slice.actions;",
+			"export default ${2:title}Slice;"
+		],
+		"description": "Creates redux slice"
+	}
+}

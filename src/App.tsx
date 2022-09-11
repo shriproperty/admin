@@ -1,20 +1,26 @@
 import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Provider } from "react-redux";
 import FullPageLoader from "./components/fullPageLoader";
+import Contacts from "./pages/contacts";
+import "./app.css";
+import "./app.less";
+import store from "./store";
 
 const Nav = lazy(() => import("./components/nav"));
 
-import "./app.css";
-import "./app.less";
-
 function App() {
 	return (
-		<Suspense fallback={<FullPageLoader />}>
-			<Router>
-				<Nav />
-				<Routes></Routes>
-			</Router>
-		</Suspense>
+		<Provider store={store}>
+			<Suspense fallback={<FullPageLoader />}>
+				<Router>
+					<Nav />
+					<Routes>
+						<Route path="/contacts" element={<Contacts />} />
+					</Routes>
+				</Router>
+			</Suspense>
+		</Provider>
 	);
 }
 
