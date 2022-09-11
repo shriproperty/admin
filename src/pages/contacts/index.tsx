@@ -12,8 +12,8 @@ function Contacts() {
 	const { getLoading, records } = useAppSelector((state: TRootState) => state.contacts);
 
 	useEffect(() => {
-		dispatch(fetchAllContacts());
-	}, [dispatch]);
+		if (!records.length) dispatch(fetchAllContacts());
+	}, [dispatch, records.length]);
 
 	const columns = [
 		{
