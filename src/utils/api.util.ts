@@ -8,7 +8,7 @@ const api: AxiosInstance = axios.create({
 
 api.interceptors.response.use(
 	(res: AxiosResponse) => {
-		return res.data;
+		return Promise.resolve(res.data);
 	},
 	(err: AxiosError<{ error: string }>) => {
 		if (!err.response) return message.error("Network Error");
@@ -19,7 +19,7 @@ api.interceptors.response.use(
 				duration: 2,
 				key: "error",
 			});
-			return err.response.data;
+			return Promise.reject(err.response.data);
 		}
 	},
 );

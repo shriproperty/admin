@@ -73,7 +73,7 @@
 		"react-hooks/rules-of-hooks": "error",
 		"guard-for-in": "off",
 		"@typescript-eslint/quotes": ["error", "double"],
-		"react-hooks/exhaustive-deps": "warn",
+		"react-hooks/exhaustive-deps": "off",
 		"@typescript-eslint/explicit-function-return-type": "off",
 		"react/boolean-prop-naming": "error",
 		"react/hook-use-state": "error",

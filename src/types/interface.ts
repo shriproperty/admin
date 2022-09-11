@@ -1,11 +1,5 @@
 import { EContactStatus } from "./enum";
 
-export interface IAPIResponse {
-	error?: string;
-	message?: string;
-	records?: any[];
-}
-
 export interface IContact {
 	/**
 	 * Id of the contact

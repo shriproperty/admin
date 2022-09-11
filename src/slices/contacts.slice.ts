@@ -9,7 +9,7 @@ export interface IContactsState {
 
 const initialState: IContactsState = {
 	records: [],
-	getLoading: true,
+	getLoading: false,
 };
 
 const contactsSlice = createSlice({

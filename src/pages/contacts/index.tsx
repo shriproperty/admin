@@ -1,6 +1,6 @@
-import { Table, Tag } from "antd";
+import { useState, useEffect } from "react";
+import { Table, Tag, TablePaginationConfig } from "antd";
 import { PresetColorType } from "antd/lib/_util/colors";
-import { useEffect } from "react";
 import { useAppDispatch } from "../../hooks/useAddDispatch";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { EContactStatus } from "../../types/enum";
@@ -11,9 +11,25 @@ function Contacts() {
 	const dispatch = useAppDispatch();
 	const { getLoading, records } = useAppSelector((state: TRootState) => state.contacts);
 
+	const [paginationOptions, setPaginationOptions] = useState<TablePaginationConfig>({
+		current: 1,
+		total: 40,
+		pageSize: 10,
+	});
+
 	useEffect(() => {
-		if (!records.length) dispatch(fetchAllContacts());
-	}, [dispatch, records.length]);
+		dispatch(fetchAllContacts(paginationOptions.current as number)).then((res) => {
+			setPaginationOptions({
+				current: res.page,
+				total: res.totalContacts,
+				pageSize: res.size,
+			});
+		});
+	}, [dispatch, records.length, paginationOptions?.current]);
+
+	const onPaginationChangeHandler: TablePaginationConfig["onChange"] = (page) => {
+		setPaginationOptions((prevState) => ({ ...prevState, current: page }));
+	};
 
 	const columns = [
 		{
@@ -54,7 +70,12 @@ function Contacts() {
 
 	return (
 		<main className="px-16 py-10">
-			<Table loading={getLoading} dataSource={records} columns={columns} />
+			<Table
+				loading={getLoading}
+				dataSource={records}
+				columns={columns}
+				pagination={{ ...paginationOptions, onChange: onPaginationChangeHandler }}
+			/>
 		</main>
 	);
 }
