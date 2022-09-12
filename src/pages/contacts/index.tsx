@@ -90,7 +90,11 @@ function Contacts() {
 
 	return (
 		<main className="px-16 py-10">
-			<ViewContactModal modalState={modalState} setModalState={setModalState} />
+			<ViewContactModal
+				modalState={modalState}
+				setModalState={setModalState}
+				currentPage={paginationOptions.current as number}
+			/>
 
 			<Table
 				loading={getLoading}

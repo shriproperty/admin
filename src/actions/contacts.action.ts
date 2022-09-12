@@ -24,3 +24,9 @@ export function fetchAllContacts(page: number) {
 		return res;
 	};
 }
+
+export function deleteContact(id: number) {
+	return async (dispatch: Dispatch) => {
+		return await api.delete(`/contacts/${id}`);
+	};
+}

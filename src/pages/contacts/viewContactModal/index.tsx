@@ -1,4 +1,6 @@
-import { Button, Modal, Typography } from "antd";
+import { Button, message, Modal, Popconfirm, Typography } from "antd";
+import { deleteContact, fetchAllContacts } from "../../../actions/contacts.action";
+import { useAppDispatch } from "../../../hooks/useAddDispatch";
 import { IContact } from "../../../types/interface";
 import StatusTag from "../statusTag";
 
@@ -15,11 +17,27 @@ interface ViewContactModalProps {
 	 * function to update the modal state
 	 */
 	setModalState: any;
+
+	/**
+	 * current page number
+	 */
+	currentPage: number;
 }
 
-function ViewContactModal({ modalState, setModalState }: ViewContactModalProps) {
+function ViewContactModal({ modalState, setModalState, currentPage }: ViewContactModalProps) {
+	const dispatch = useAppDispatch();
+
 	const closeModalHandler = () => {
 		setModalState((prevState: any) => ({ ...prevState, visible: false }));
+	};
+
+	const deleteHandler = async () => {
+		await dispatch(deleteContact(modalState.record.id as number));
+
+		message.success("Contact deleted successfully");
+		setModalState((prevState: any) => ({ ...prevState, visible: false }));
+
+		dispatch(fetchAllContacts(currentPage));
 	};
 
 	return (
@@ -27,7 +45,7 @@ function ViewContactModal({ modalState, setModalState }: ViewContactModalProps) 
 			title={
 				<div className="flex items-center">
 					<Typography.Title level={5} className="!m-0 !mb-0 !mt-0">
-						{modalState.record.name}
+						({modalState.record.id}) {modalState.record.name}
 					</Typography.Title>
 					<StatusTag status={modalState.record.status} className="!ml-3" />
 				</div>
@@ -74,7 +92,15 @@ function ViewContactModal({ modalState, setModalState }: ViewContactModalProps) 
 
 			<div className="mt-12">
 				<Button>Update Status</Button>
-				<Button className="ml-3">Delete</Button>
+
+				<Popconfirm
+					title="Are you sure to delete this Contact?"
+					okText="Yes"
+					cancelText="No"
+					onConfirm={deleteHandler}
+				>
+					<Button className="ml-3">Delete</Button>
+				</Popconfirm>
 			</div>
 		</Modal>
 	);

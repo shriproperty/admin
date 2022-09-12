@@ -5,11 +5,13 @@ import { replaceContacts, setGetLoading } from "../reducers/contacts.reducer";
 export interface IContactsState {
 	records: IContact[];
 	getLoading: boolean;
+	deleteLoading: boolean;
 }
 
 const initialState: IContactsState = {
 	records: [],
 	getLoading: false,
+	deleteLoading: false,
 };
 
 const contactsSlice = createSlice({

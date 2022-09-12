@@ -2,9 +2,15 @@ import { EContactStatus } from "./enum";
 
 export interface IContact {
 	/**
-	 * Id of the contact
+	 * Contact ID provided by mongoose (primary key)
+	 * `id` should be used instead of `_id` in the frontend
 	 */
 	_id?: string;
+
+	/**
+	 * Unique identifier for the contact.
+	 */
+	id?: number;
 
 	/**
 	 * Name of user who created the contact
