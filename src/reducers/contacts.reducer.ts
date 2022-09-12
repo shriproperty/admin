@@ -9,3 +9,7 @@ export function replaceContacts(state: IContactsState, action: PayloadAction<ICo
 export function setGetLoading(state: IContactsState, action: PayloadAction<boolean>) {
 	state.getLoading = action.payload;
 }
+
+export function setUpdateStatusLoading(state: IContactsState, action: PayloadAction<boolean>) {
+	state.updateStatusLoading = action.payload;
+}

@@ -1,17 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { IContact } from "../types/interface";
-import { replaceContacts, setGetLoading } from "../reducers/contacts.reducer";
+import {
+	replaceContacts,
+	setGetLoading,
+	setUpdateStatusLoading,
+} from "../reducers/contacts.reducer";
 
 export interface IContactsState {
 	records: IContact[];
 	getLoading: boolean;
-	deleteLoading: boolean;
+	updateStatusLoading: boolean;
 }
 
 const initialState: IContactsState = {
 	records: [],
 	getLoading: false,
-	deleteLoading: false,
+	updateStatusLoading: false,
 };
 
 const contactsSlice = createSlice({
@@ -20,6 +24,7 @@ const contactsSlice = createSlice({
 	reducers: {
 		replaceContacts,
 		setGetLoading,
+		setUpdateStatusLoading,
 	},
 });
 
