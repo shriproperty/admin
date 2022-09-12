@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
-import { Table, Tag, TablePaginationConfig } from "antd";
-import { PresetColorType } from "antd/lib/_util/colors";
+import { Table, TablePaginationConfig } from "antd";
 import { useAppDispatch } from "../../hooks/useAddDispatch";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { EContactStatus } from "../../types/enum";
 import { TRootState } from "../../types/types";
 import { fetchAllContacts } from "../../actions/contacts.action";
+import { IContact } from "../../types/interface";
+import StatusTag from "./statusTag";
+import ViewContactModal from "./viewContactModal";
 
 function Contacts() {
 	const dispatch = useAppDispatch();
@@ -15,6 +17,17 @@ function Contacts() {
 		current: 1,
 		total: 40,
 		pageSize: 10,
+	});
+	const [modalState, setModalState] = useState<{ visible: boolean; record: IContact }>({
+		visible: false,
+		record: {
+			name: "Shri Property",
+			phone: 9465663009,
+			email: "info@shriproperty.com",
+			subject: "3 BHK Flat",
+			message: "I want to buy 3 BHK Flat",
+			status: EContactStatus.Pending,
+		},
 	});
 
 	useEffect(() => {
@@ -31,7 +44,20 @@ function Contacts() {
 		setPaginationOptions((prevState) => ({ ...prevState, current: page }));
 	};
 
+	const onRowHandler = (record: IContact) => {
+		return {
+			onClick: () => {
+				setModalState({ visible: true, record });
+			},
+		};
+	};
+
 	const columns = [
+		{
+			title: "ID",
+			dataIndex: "id",
+			key: "id",
+		},
 		{
 			title: "Name",
 			dataIndex: "name",
@@ -52,13 +78,7 @@ function Contacts() {
 			dataIndex: "status",
 			key: "status",
 			render: (status: EContactStatus) => {
-				let color: PresetColorType = "red";
-
-				if (status === EContactStatus["Pending"]) color = "red";
-				else if (status === EContactStatus["In Progress"]) color = "gold";
-				else if (status === EContactStatus["Completed"]) color = "green";
-
-				return <Tag color={color}>{status}</Tag>;
+				return <StatusTag status={status} />;
 			},
 		},
 		{
@@ -70,10 +90,17 @@ function Contacts() {
 
 	return (
 		<main className="px-16 py-10">
+			<ViewContactModal
+				modalState={modalState}
+				setModalState={setModalState}
+				currentPage={paginationOptions.current as number}
+			/>
+
 			<Table
 				loading={getLoading}
 				dataSource={records}
 				columns={columns}
+				onRow={onRowHandler}
 				pagination={{ ...paginationOptions, onChange: onPaginationChangeHandler }}
 			/>
 		</main>
