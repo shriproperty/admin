@@ -54,9 +54,9 @@ function Contacts() {
 
 	const columns = [
 		{
-			title: "ID",
-			dataIndex: "id",
-			key: "id",
+			title: "UID",
+			dataIndex: "uid",
+			key: "uid",
 		},
 		{
 			title: "Name",

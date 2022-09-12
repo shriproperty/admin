@@ -10,7 +10,7 @@ export interface IContact {
 	/**
 	 * Unique identifier for the contact.
 	 */
-	id?: number;
+	uid?: number;
 
 	/**
 	 * Name of user who created the contact

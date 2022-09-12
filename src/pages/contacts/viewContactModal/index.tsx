@@ -48,14 +48,14 @@ function ViewContactModal({ modalState, setModalState, currentPage }: ViewContac
 
 	const modalOkHandler = async () => {
 		if (selectedStatus !== modalState.record.status) {
-			await dispatch(updateContactStatus(modalState.record.id as number, selectedStatus));
+			await dispatch(updateContactStatus(modalState.record.uid as number, selectedStatus));
 			refreshState();
 		}
 		setModalState((prevState: any) => ({ ...prevState, visible: false }));
 	};
 
 	const deleteHandler = async () => {
-		await dispatch(deleteContact(modalState.record.id as number));
+		await dispatch(deleteContact(modalState.record.uid as number));
 
 		message.success("Contact deleted successfully");
 		setModalState((prevState: any) => ({ ...prevState, visible: false }));
@@ -80,7 +80,7 @@ function ViewContactModal({ modalState, setModalState, currentPage }: ViewContac
 			title={
 				<div className="flex items-center">
 					<Typography.Title level={5} className="!m-0 !mb-0 !mt-0">
-						({modalState.record.id}) {modalState.record.name}
+						({modalState.record.uid}) {modalState.record.name}
 					</Typography.Title>
 					<StatusTag status={modalState.record.status} className="!ml-3" />
 				</div>

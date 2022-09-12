@@ -26,16 +26,25 @@ export function fetchAllContacts(page: number) {
 	};
 }
 
-export function deleteContact(id: number) {
+/**
+ * Delete a contact
+ * @param uid uid of contact to delete
+ */
+export function deleteContact(uid: number) {
 	return async (dispatch: Dispatch) => {
-		return await api.delete(`/contacts/${id}`);
+		return await api.delete(`/contacts/${uid}`);
 	};
 }
 
-export function updateContactStatus(id: number, status: EContactStatus) {
+/**
+ * Update status of contact
+ * @param uid uid of contact to update
+ * @param status status to update
+ */
+export function updateContactStatus(uid: number, status: EContactStatus) {
 	return async (dispatch: Dispatch) => {
 		dispatch(contactsActions.setUpdateStatusLoading(true));
-		const res = await api.patch(`/contacts/${id}`, { status });
+		const res = await api.patch(`/contacts/${uid}`, { status });
 		dispatch(contactsActions.setUpdateStatusLoading(false));
 
 		return res;
