@@ -1,11 +1,12 @@
 import { lazy, Suspense } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { Provider } from "react-redux";
 import FullPageLoader from "./components/fullPageLoader";
 import Contacts from "./pages/contacts";
 import "./app.css";
 import "./app.less";
 import store from "./store";
+import PageNotFound from "./pages/pageNotFound";
 
 const Nav = lazy(() => import("./components/nav"));
 
@@ -17,6 +18,8 @@ function App() {
 					<Nav />
 					<Routes>
 						<Route path="/contacts" element={<Contacts />} />
+						<Route path="/404" element={<PageNotFound />} />
+						<Route path="*" element={<Navigate replace to="/404" />} />
 					</Routes>
 				</Router>
 			</Suspense>
