@@ -14,6 +14,7 @@ function Nav() {
 
 	const menuItems: ItemType[] = [
 		{ label: <Link to="/contacts">Contacts</Link>, key: "/contacts" },
+		{ label: <Link to="/users">Users</Link>, key: "/users" },
 	];
 
 	return (
