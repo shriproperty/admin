@@ -2,7 +2,7 @@ import { Button, Dropdown, Menu, message, Modal, Popconfirm, Typography } from "
 import { useState } from "react";
 import {
 	deleteContact,
-	fetchAllContacts,
+	getAllContacts,
 	updateContactStatus,
 } from "../../../actions/contacts.action";
 import { useAppDispatch } from "../../../hooks/useAddDispatch";
@@ -38,7 +38,7 @@ function ViewContactModal({ modalState, setModalState, currentPage }: ViewContac
 	const [selectedStatus, setSelectedStatus] = useState<EContactStatus>(modalState.record.status);
 
 	const refreshState = () => {
-		dispatch(fetchAllContacts(currentPage));
+		dispatch(getAllContacts(currentPage));
 	};
 
 	const closeModalHandler = () => {

@@ -1,17 +1,20 @@
 import { Table } from "antd";
 import VerifiedTag from "./verifiedTag";
+import { getAllUsers } from "../../actions/users.action";
+import { useAppDispatch } from "../../hooks/useAddDispatch";
+import { useEffect } from "react";
+import { useAppSelector } from "../../hooks/useAppSelector";
+import { TRootState } from "../../types/types";
+import useFormatDate from "../../hooks/useFormatDate";
 
 function Users() {
-	const records = [
-		{
-			uid: 1,
-			name: "Shri Property",
-			email: "info@shriproperty.com",
-			phone: 9465663009,
-			verified: true,
-			createdAt: "11/12/2006",
-		},
-	];
+	const dispatch = useAppDispatch();
+	const { records } = useAppSelector((state: TRootState) => state.users);
+	const formatDate = useFormatDate();
+
+	useEffect(() => {
+		dispatch(getAllUsers());
+	}, []);
 
 	const columns = [
 		{
@@ -46,6 +49,9 @@ function Users() {
 			title: "Created at",
 			dataIndex: "createdAt",
 			key: "createdAt",
+			render: (createdAt: Date) => {
+				return formatDate(createdAt);
+			},
 		},
 	];
 

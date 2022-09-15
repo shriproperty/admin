@@ -4,7 +4,7 @@ import { EContactStatus } from "../types/enum";
 import { IContact } from "../types/interface";
 import api from "../utils/api.util";
 
-export function fetchAllContacts(page: number) {
+export function getAllContacts(page: number) {
 	return async (dispatch: Dispatch) => {
 		interface IResponse {
 			message: string;
