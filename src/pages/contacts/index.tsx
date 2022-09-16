@@ -4,7 +4,7 @@ import { useAppDispatch } from "../../hooks/useAddDispatch";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { EContactStatus } from "../../types/enum";
 import { TRootState } from "../../types/types";
-import { fetchAllContacts } from "../../actions/contacts.action";
+import { getAllContacts } from "../../actions/contacts.action";
 import { IContact } from "../../types/interface";
 import StatusTag from "./statusTag";
 import ViewContactModal from "./viewContactModal";
@@ -31,7 +31,7 @@ function Contacts() {
 	});
 
 	useEffect(() => {
-		dispatch(fetchAllContacts(paginationOptions.current as number)).then((res) => {
+		dispatch(getAllContacts(paginationOptions.current as number)).then((res) => {
 			setPaginationOptions({
 				current: res.page,
 				total: res.totalContacts,

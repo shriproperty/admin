@@ -52,3 +52,45 @@ export interface IContact {
 	 */
 	updatedAt?: Date;
 }
+
+export interface IUser {
+	/**
+	 * Id of the user provided by mongodb
+	 */
+	_id: string;
+
+	/**
+	 * Serial number of the user
+	 */
+	uid: number;
+
+	/**
+	 * Name of the user
+	 */
+	name: string;
+
+	/**
+	 * Email of the user
+	 */
+	email: string;
+
+	/**
+	 * Phone number of the user
+	 */
+	phone: number;
+
+	/**
+	 * Is user verified
+	 */
+	verified: boolean;
+
+	/**
+	 * When user signed up
+	 */
+	createdAt: Date;
+
+	/**
+	 * When user last updated
+	 */
+	updatedAt: Date;
+}
