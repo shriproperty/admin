@@ -34,7 +34,7 @@ function Contacts() {
 		dispatch(getAllContacts(paginationOptions.current as number)).then((res) => {
 			setPaginationOptions({
 				current: res.page,
-				total: res.totalContacts,
+				total: res.total_contacts,
 				pageSize: res.size,
 			});
 		});

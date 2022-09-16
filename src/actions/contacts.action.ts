@@ -10,8 +10,8 @@ export function getAllContacts(page: number) {
 			message: string;
 			page: number;
 			size: number;
-			totalPages: number;
-			totalContacts: number;
+			total_pages: number;
+			total_contacts: number;
 			records: IContact[];
 		}
 

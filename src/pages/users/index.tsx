@@ -25,7 +25,7 @@ function Users() {
 			.then((res) => {
 				setPaginationOptions({
 					current: res.page,
-					total: res.totalContacts,
+					total: res.total_users,
 					pageSize: res.size,
 				});
 			})

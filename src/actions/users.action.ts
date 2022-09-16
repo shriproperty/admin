@@ -9,8 +9,8 @@ export function getAllUsers(page: number) {
 			message: string;
 			page: number;
 			size: number;
-			totalPages: number;
-			totalContacts: number;
+			total_pages: number;
+			total_users: number;
 			records: IUser[];
 		}
 
