@@ -1,8 +1,8 @@
-import { Table } from "antd";
+import { Table, TablePaginationConfig } from "antd";
 import VerifiedTag from "./verifiedTag";
 import { getAllUsers } from "../../actions/users.action";
 import { useAppDispatch } from "../../hooks/useAddDispatch";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { TRootState } from "../../types/types";
 import useFormatDate from "../../hooks/useFormatDate";
@@ -12,9 +12,31 @@ function Users() {
 	const { records } = useAppSelector((state: TRootState) => state.users);
 	const formatDate = useFormatDate();
 
+	const [getLoading, setGetLoading] = useState(true);
+	const [paginationOptions, setPaginationOptions] = useState<TablePaginationConfig>({
+		current: 1,
+		total: 40,
+		pageSize: 10,
+	});
+
 	useEffect(() => {
-		dispatch(getAllUsers());
-	}, []);
+		setGetLoading(true);
+		dispatch(getAllUsers(paginationOptions.current as number))
+			.then((res) => {
+				setPaginationOptions({
+					current: res.page,
+					total: res.totalContacts,
+					pageSize: res.size,
+				});
+			})
+			.finally(() => {
+				setGetLoading(false);
+			});
+	}, [records.length, paginationOptions?.current]);
+
+	const onPaginationChangeHandler: TablePaginationConfig["onChange"] = (page) => {
+		setPaginationOptions((prevState) => ({ ...prevState, current: page }));
+	};
 
 	const columns = [
 		{
@@ -57,7 +79,12 @@ function Users() {
 
 	return (
 		<main className="px-16 py-10">
-			<Table dataSource={records} columns={columns} />;
+			<Table
+				loading={getLoading}
+				dataSource={records}
+				columns={columns}
+				pagination={{ ...paginationOptions, onChange: onPaginationChangeHandler }}
+			/>
 		</main>
 	);
 }
