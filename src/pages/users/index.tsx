@@ -1,5 +1,5 @@
 import { Table, TablePaginationConfig } from "antd";
-import VerifiedTag from "./verifiedTag";
+import VerifiedTag from "./components/verifiedTag";
 import { getAllUsers } from "../../actions/users.action";
 import { useAppDispatch } from "../../hooks/useAddDispatch";
 import { useEffect, useState } from "react";

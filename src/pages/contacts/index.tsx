@@ -6,8 +6,8 @@ import { EContactStatus } from "../../types/enum";
 import { TRootState } from "../../types/types";
 import { getAllContacts } from "../../actions/contacts.action";
 import { IContact } from "../../types/interface";
-import StatusTag from "./statusTag";
-import ViewContactModal from "./viewContactModal";
+import StatusTag from "./components/statusTag";
+import ViewContactModal from "./components/viewContactModal";
 
 function Contacts() {
 	const dispatch = useAppDispatch();

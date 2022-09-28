@@ -1,6 +1,6 @@
 import { Tag } from "antd";
 import { PresetColorType } from "antd/lib/_util/colors";
-import { EContactStatus } from "../../../types/enum";
+import { EContactStatus } from "../../../../types/enum";
 
 interface StatusTagProps {
 	/**

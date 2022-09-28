@@ -4,12 +4,12 @@ import {
 	deleteContact,
 	getAllContacts,
 	updateContactStatus,
-} from "../../../actions/contacts.action";
-import { useAppDispatch } from "../../../hooks/useAddDispatch";
-import { useAppSelector } from "../../../hooks/useAppSelector";
-import { EContactStatus } from "../../../types/enum";
-import { IContact } from "../../../types/interface";
-import { TRootState } from "../../../types/types";
+} from "../../../../actions/contacts.action";
+import { useAppDispatch } from "../../../../hooks/useAddDispatch";
+import { useAppSelector } from "../../../../hooks/useAppSelector";
+import { EContactStatus } from "../../../../types/enum";
+import { IContact } from "../../../../types/interface";
+import { TRootState } from "../../../../types/types";
 import StatusTag from "../statusTag";
 
 interface ViewContactModalProps {
