@@ -94,3 +94,20 @@ export interface IUser {
 	 */
 	updatedAt: Date;
 }
+
+export interface IFacility {
+	/**
+	 * Title of the facility
+	 */
+	title: string;
+
+	/**
+	 * Icon for facility
+	 */
+	icon: string;
+
+	/**
+	 * S3 Key
+	 */
+	key: string;
+}
