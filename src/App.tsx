@@ -8,6 +8,7 @@ import "./app.less";
 import store from "./store";
 import PageNotFound from "./pages/pageNotFound";
 import Users from "./pages/users";
+import Properties from "./pages/properties";
 
 const Nav = lazy(() => import("./components/nav"));
 
@@ -18,6 +19,7 @@ function App() {
 				<Router>
 					<Nav />
 					<Routes>
+						<Route path="/properties" element={<Properties />} />
 						<Route path="/contacts" element={<Contacts />} />
 						<Route path="/users" element={<Users />} />
 						<Route path="/404" element={<PageNotFound />} />

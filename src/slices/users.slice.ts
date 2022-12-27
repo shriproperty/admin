@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { replaceUsers } from "../reducers/users.reducers";
+import { replaceUsersReducer } from "../reducers/users.reducers";
 
 export interface IUser {
 	_id: string;
@@ -26,7 +26,7 @@ const usersSlice = createSlice({
 	name: "users",
 	initialState,
 	reducers: {
-		replaceUsers: replaceUsers,
+		replaceUsers: replaceUsersReducer,
 	},
 });
 

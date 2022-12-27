@@ -1,14 +1,14 @@
 import { Tag } from "antd";
 import { PresetColorType } from "antd/lib/_util/colors";
 
-interface VerifiedTagProps {
+interface VerifiedUserTagProps {
 	/**
 	 * Is user verified
 	 */
 	isVerified: boolean;
 }
 
-function VerifiedTag({ isVerified }: VerifiedTagProps) {
+function VerifiedUserTag({ isVerified }: VerifiedUserTagProps) {
 	let color: PresetColorType = "red";
 
 	if (isVerified) color = "green";
@@ -17,4 +17,4 @@ function VerifiedTag({ isVerified }: VerifiedTagProps) {
 	return <Tag color={color}>{isVerified ? "Verified" : "Pending verification"}</Tag>;
 }
 
-export default VerifiedTag;
+export default VerifiedUserTag;

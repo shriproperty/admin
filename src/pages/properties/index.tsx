@@ -1,15 +1,15 @@
-import { Table, TablePaginationConfig } from "antd";
-import VerifiedUserTag from "./verifiedTag";
-import { getAllUsers as getAllUsersHandler } from "../../actions/users.action";
+import { FC, useEffect, useState } from "react";
 import { useAppDispatch } from "../../hooks/useAddDispatch";
-import { useEffect, useState } from "react";
+import { getAllPropertiesHandler } from "../../actions/properties.action";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { TRootState } from "../../store";
 import useFormatDate from "../../hooks/useFormatDate";
+import { Table, TablePaginationConfig } from "antd";
+import ApprovedPropertyTag from "./approvalTag";
 
-function Users() {
+const Properties: FC = () => {
 	const dispatch = useAppDispatch();
-	const { records } = useAppSelector((state: TRootState) => state.users);
+	const { records } = useAppSelector((state: TRootState) => state.properties);
 	const formatDate = useFormatDate();
 
 	const [getLoading, setGetLoading] = useState(true);
@@ -21,11 +21,11 @@ function Users() {
 
 	useEffect(() => {
 		setGetLoading(true);
-		dispatch(getAllUsersHandler(paginationOptions.current as number))
+		dispatch(getAllPropertiesHandler(paginationOptions.current as number))
 			.then((res) => {
 				setPaginationOptions({
 					current: res.page,
-					total: res.total_users,
+					total: res.total_properties,
 					pageSize: res.size,
 				});
 			})
@@ -45,30 +45,30 @@ function Users() {
 			key: "uid",
 		},
 		{
-			title: "Name",
-			dataIndex: "name",
-			key: "name",
+			title: "Title",
+			dataIndex: ["basic_details", "title"],
+			key: "title",
 		},
 		{
-			title: "Email",
-			dataIndex: "email",
-			key: "email",
+			title: "owner",
+			dataIndex: ["basic_details", "owner", "name"],
+			key: "owner",
 		},
 		{
-			title: "Phone",
-			dataIndex: "phone",
-			key: "phone",
+			title: "owner contact",
+			dataIndex: ["basic_details", "owner", "contact"],
+			key: "contact",
 		},
 		{
-			title: "Verified",
-			dataIndex: "verified",
-			key: "verified",
-			render: (verified: boolean) => {
-				return <VerifiedUserTag isVerified={verified} />;
+			title: "approved",
+			dataIndex: "approved",
+			key: "approved",
+			render: (approved: boolean) => {
+				return <ApprovedPropertyTag isApproved={approved} />;
 			},
 		},
 		{
-			title: "Created at",
+			title: "Created on",
 			dataIndex: "createdAt",
 			key: "createdAt",
 			render: (createdAt: Date) => {
@@ -87,6 +87,6 @@ function Users() {
 			/>
 		</main>
 	);
-}
+};
 
-export default Users;
+export default Properties;
