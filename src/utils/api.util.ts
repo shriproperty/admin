@@ -1,6 +1,5 @@
 import { message } from "antd";
 import axios, { AxiosError, AxiosInstance, AxiosResponse } from "axios";
-
 const api: AxiosInstance = axios.create({
 	baseURL: process.env.REACT_APP_API_URL,
 	timeout: 4000,
@@ -8,9 +7,9 @@ const api: AxiosInstance = axios.create({
 
 api.interceptors.response.use(
 	(res: AxiosResponse) => {
-		return Promise.resolve(res.data);
+		return Promise.resolve(res);
 	},
-	(err: AxiosError<{ error: string }>) => {
+	(err: AxiosError<IAPIResponseError>) => {
 		if (!err.response) return message.error("Network Error");
 
 		if (err.response.data) {
@@ -23,5 +22,13 @@ api.interceptors.response.use(
 		}
 	},
 );
+
+export interface IAPIResponseSuccess {
+	message: string;
+}
+
+export interface IAPIResponseError {
+	error: string;
+}
 
 export default api;

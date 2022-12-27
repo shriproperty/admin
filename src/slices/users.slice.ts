@@ -1,6 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IUser } from "../types/interface";
 import { replaceUsers } from "../reducers/users.reducers";
+
+export interface IUser {
+	_id: string;
+	uid: number;
+	role: "admin" | "user";
+	name: string;
+	email: string;
+	phone: string;
+	properties: [];
+	verified: boolean;
+	createdAt: string;
+	updatedAt: string;
+}
 
 export interface IUsersState {
 	records: IUser[];

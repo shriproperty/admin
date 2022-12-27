@@ -9,7 +9,7 @@ import { useAppDispatch } from "../../../hooks/useAddDispatch";
 import { useAppSelector } from "../../../hooks/useAppSelector";
 import { EContactStatus } from "../../../types/enum";
 import { IContact } from "../../../types/interface";
-import { TRootState } from "../../../types/types";
+import { TRootState } from "../../../store";
 import StatusTag from "../statusTag";
 
 interface ViewContactModalProps {

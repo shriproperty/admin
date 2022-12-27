@@ -4,7 +4,7 @@ import { getAllUsers } from "../../actions/users.action";
 import { useAppDispatch } from "../../hooks/useAddDispatch";
 import { useEffect, useState } from "react";
 import { useAppSelector } from "../../hooks/useAppSelector";
-import { TRootState } from "../../types/types";
+import { TRootState } from "../../store";
 import useFormatDate from "../../hooks/useFormatDate";
 
 function Users() {
@@ -24,9 +24,9 @@ function Users() {
 		dispatch(getAllUsers(paginationOptions.current as number))
 			.then((res) => {
 				setPaginationOptions({
-					current: res.page,
-					total: res.total_users,
-					pageSize: res.size,
+					current: res.data.page,
+					total: res.data.total_users,
+					pageSize: res.data.size,
 				});
 			})
 			.finally(() => {

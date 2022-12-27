@@ -1,12 +1,10 @@
 import { Dispatch } from "@reduxjs/toolkit";
-import { usersActions } from "../slices/users.slice";
-import { IUser } from "../types/interface";
-import api from "../utils/api.util";
+import { usersActions, IUser } from "../slices/users.slice";
+import api, { IAPIResponseSuccess } from "../utils/api.util";
 
 export function getAllUsers(page: number) {
 	return async (dispatch: Dispatch) => {
-		interface IResponse {
-			message: string;
+		interface IResponse extends IAPIResponseSuccess {
 			page: number;
 			size: number;
 			total_pages: number;
@@ -14,8 +12,8 @@ export function getAllUsers(page: number) {
 			records: IUser[];
 		}
 
-		const res: IResponse = await api.get(`/users?page=${page}`);
-		dispatch(usersActions.replaceUsers(res?.records || []));
+		const res = await api.get<IResponse>(`/users?page=${page}`);
+		dispatch(usersActions.replaceUsers(res.data.records || []));
 
 		return res;
 	};

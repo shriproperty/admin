@@ -1,6 +1,5 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import { IUsersState } from "../slices/users.slice";
-import { IUser } from "../types/interface";
+import { IUsersState, IUser } from "../slices/users.slice";
 
 export function replaceUsers(state: IUsersState, action: PayloadAction<IUser[]>) {
 	state.records = action.payload;

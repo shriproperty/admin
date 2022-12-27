@@ -3,7 +3,7 @@ import { Table, TablePaginationConfig } from "antd";
 import { useAppDispatch } from "../../hooks/useAddDispatch";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { EContactStatus } from "../../types/enum";
-import { TRootState } from "../../types/types";
+import { TRootState } from "../../store";
 import { getAllContacts } from "../../actions/contacts.action";
 import { IContact } from "../../types/interface";
 import StatusTag from "./statusTag";
