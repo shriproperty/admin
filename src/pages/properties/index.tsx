@@ -5,7 +5,7 @@ import { useAppSelector } from "../../hooks/useAppSelector";
 import { TRootState } from "../../store";
 import useFormatDate from "../../hooks/useFormatDate";
 import { Table, TablePaginationConfig } from "antd";
-import ApprovedPropertyTag from "./approvalTag";
+import ApprovedPropertyTag from "./components/approvalTag";
 
 const Properties: FC = () => {
 	const dispatch = useAppDispatch();
