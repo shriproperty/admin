@@ -1,6 +1,6 @@
 import { Dispatch } from "@reduxjs/toolkit";
 import { usersActions, IUser } from "../slices/users.slice";
-import api, { IAPIResponseError, IAPIResponseSuccess } from "../utils/api.util";
+import API, { IAPIResponseError, IAPIResponseSuccess } from "../utils/api.util";
 import { AxiosError } from "axios";
 
 export function getAllUsers(page: number) {
@@ -14,7 +14,7 @@ export function getAllUsers(page: number) {
 				records: IUser[];
 			}
 
-			const res = await api.get<IResponse>(`/users?page=${page}`);
+			const res = await API.get<IResponse>(`/users?page=${page}`);
 			dispatch(usersActions.replaceUsers(res.data.records || []));
 
 			return Promise.resolve(res.data);

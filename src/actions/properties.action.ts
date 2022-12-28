@@ -1,5 +1,5 @@
 import { Dispatch } from "@reduxjs/toolkit";
-import api, { IAPIResponseError, IAPIResponseSuccess } from "../utils/api.util";
+import API, { IAPIResponseError, IAPIResponseSuccess } from "../utils/api.util";
 import { IProperty, propertyActions } from "../slices/properties.slice";
 import { AxiosError } from "axios";
 
@@ -16,7 +16,7 @@ export const getAllPropertiesHandler = (page: number) => {
 				min_price: number;
 			}
 
-			const res = await api.get<IResponse>(`/properties?page=${page}
+			const res = await API.get<IResponse>(`/properties?page=${page}
 			`);
 			dispatch(propertyActions.replaceProperties(res.data.records || []));
 

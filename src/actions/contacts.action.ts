@@ -2,7 +2,7 @@ import { Dispatch } from "@reduxjs/toolkit";
 import { contactsActions } from "../slices/contacts.slice";
 import { EContactStatus } from "../types/enum";
 import { IContact } from "../types/interface";
-import api from "../utils/api.util";
+import API from "../utils/api.util";
 
 export function getAllContacts(page: number) {
 	return async (dispatch: Dispatch) => {
@@ -17,7 +17,7 @@ export function getAllContacts(page: number) {
 
 		dispatch(contactsActions.setGetLoading(true));
 
-		const res: IResponse = await api.get(`/contacts?page=${page}`);
+		const res: IResponse = await API.get(`/contacts?page=${page}`);
 
 		dispatch(contactsActions.replaceContacts(res?.records || []));
 		dispatch(contactsActions.setGetLoading(false));
@@ -32,7 +32,7 @@ export function getAllContacts(page: number) {
  */
 export function deleteContact(uid: number) {
 	return async (dispatch: Dispatch) => {
-		return await api.delete(`/contacts/${uid}`);
+		return await API.delete(`/contacts/${uid}`);
 	};
 }
 
@@ -44,7 +44,7 @@ export function deleteContact(uid: number) {
 export function updateContactStatus(uid: number, status: EContactStatus) {
 	return async (dispatch: Dispatch) => {
 		dispatch(contactsActions.setUpdateStatusLoading(true));
-		const res = await api.patch(`/contacts/${uid}`, { status });
+		const res = await API.patch(`/contacts/${uid}`, { status });
 		dispatch(contactsActions.setUpdateStatusLoading(false));
 
 		return res;

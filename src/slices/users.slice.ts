@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { replaceUsersReducer } from "../reducers/users.reducers";
+import { replaceCurrentUserReducer, replaceUsersReducer } from "../reducers/users.reducers";
 
 export interface IUser {
 	_id: string;
@@ -16,10 +16,12 @@ export interface IUser {
 
 export interface IUsersState {
 	records: IUser[];
+	currentUser: IUser | null;
 }
 
 const initialState: IUsersState = {
 	records: [],
+	currentUser: null,
 };
 
 const usersSlice = createSlice({
@@ -27,6 +29,7 @@ const usersSlice = createSlice({
 	initialState,
 	reducers: {
 		replaceUsers: replaceUsersReducer,
+		replaceCurrentUser: replaceCurrentUserReducer,
 	},
 });
 
