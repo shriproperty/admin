@@ -1,5 +1,11 @@
-import { Form, Input, Button } from "antd";
-import { FC } from "react";
+import { Form, Input, Button, Select, Spin } from "antd";
+import { FC, useEffect } from "react";
+import { useAppDispatch } from "../../../../../hooks/useAddDispatch";
+import { getAllCategoriesHandler } from "../../../../../actions/category.action";
+import { useNavigate } from "react-router";
+import { useAppSelector } from "../../../../../hooks/useAppSelector";
+import { TRootState } from "../../../../../store";
+import { getAllPropertyTypesHandler } from "../../../../../actions/propertyType.action";
 
 /**
  * TODO: add following fields
@@ -15,6 +21,24 @@ interface BasicDetailsFormProps {
 }
 
 const BasicDetailsForm: FC<BasicDetailsFormProps> = ({ setCurrentTab }) => {
+	const dispatch = useAppDispatch();
+	const navigate = useNavigate();
+	const categories = useAppSelector((state: TRootState) => state.categories.records);
+	const propertyTypes = useAppSelector((state: TRootState) => state.propertyType.records);
+
+	useEffect(() => {
+		fetchAllFields();
+	}, []);
+
+	const fetchAllFields = async () => {
+		try {
+			await dispatch(getAllCategoriesHandler());
+			await dispatch(getAllPropertyTypesHandler());
+		} catch (err) {
+			navigate("/properties");
+		}
+	};
+
 	return (
 		<Form
 			id="0"
@@ -132,6 +156,7 @@ const BasicDetailsForm: FC<BasicDetailsFormProps> = ({ setCurrentTab }) => {
 			<Form.Item
 				label="Commission"
 				name="commission"
+				tooltip="how much commission you will given to the shriproperty"
 				rules={[
 					{ required: true, message: "Commission is required" },
 					{ whitespace: true, message: "Commission must not be empty" },
@@ -139,6 +164,48 @@ const BasicDetailsForm: FC<BasicDetailsFormProps> = ({ setCurrentTab }) => {
 			>
 				<Input type="text" placeholder="1%" />
 			</Form.Item>
+
+			{categories.length > 0 && categories ? (
+				<Form.Item
+					label="Category"
+					name="category"
+					rules={[{ required: true, message: "Category is required" }]}
+				>
+					<Select
+						defaultValue={categories.length > 0 ? categories[0].title : "Apartment"}
+						options={categories.map((category) => {
+							return {
+								label: category.title,
+								value: category._id,
+							};
+						})}
+					/>
+				</Form.Item>
+			) : (
+				<Spin />
+			)}
+
+			{propertyTypes.length > 0 && propertyTypes ? (
+				<Form.Item
+					label="Property Type"
+					name="property_type"
+					rules={[{ required: true, message: "Property Type is required" }]}
+				>
+					<Select
+						defaultValue={
+							propertyTypes.length > 0 ? propertyTypes[0].title : "Apartment"
+						}
+						options={propertyTypes.map((propertyType) => {
+							return {
+								label: propertyType.title,
+								value: propertyType._id,
+							};
+						})}
+					/>
+				</Form.Item>
+			) : (
+				<Spin />
+			)}
 
 			<div className="flex justify-end">
 				<Button type="primary" htmlType="submit">

@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { IUser } from "./users.slice";
 import { replacePropertiesReducer } from "../reducers/properties.reducer";
+import { ICategory } from "./category.slice";
 
 export interface IPropertyState {
 	records: IProperty[];
@@ -58,7 +59,7 @@ export interface IProperty {
 		size?: number;
 		unit: Type;
 		property_type: Type;
-		category: Type;
+		category: ICategory;
 		security_deposit?: number;
 		monthly_maintenance?: number;
 		construction_status?: Type;

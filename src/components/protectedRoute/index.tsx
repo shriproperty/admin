@@ -13,7 +13,7 @@ const ProtectedRoute: FC = () => {
 
 	useEffect(() => {
 		dispatch(getCurrentUserHandler());
-	}, [dispatch, currentUser]);
+	}, [dispatch]);
 
 	return currentUser ? (
 		<Outlet />
