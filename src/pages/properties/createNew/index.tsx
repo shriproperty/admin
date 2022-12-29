@@ -2,6 +2,7 @@ import { Steps } from "antd";
 import { FC, useEffect, useState } from "react";
 import BasicDetailsForm from "./components/basicDetailsForm";
 import LocationForm from "./components/locationForm";
+import SpecificationsForm from "./components/specifications";
 
 /**
  * TODO: other details
@@ -13,7 +14,7 @@ import LocationForm from "./components/locationForm";
  */
 
 const CreateNewProperty: FC = () => {
-	const [currentTab, setCurrentTab] = useState(0);
+	const [currentTab, setCurrentTab] = useState(2);
 
 	useEffect(() => {
 		const previousTabElement = document.getElementById(String(currentTab - 1));
@@ -32,7 +33,7 @@ const CreateNewProperty: FC = () => {
 
 	return (
 		<main className="px-16 py-10 flex justify-around">
-			<div className="px-16 flex">
+			<div className="px-16">
 				<Steps
 					progressDot
 					current={currentTab}
@@ -48,6 +49,7 @@ const CreateNewProperty: FC = () => {
 			<div className="px-16 w-1/2">
 				<BasicDetailsForm setCurrentTab={setCurrentTab} />
 				<LocationForm setCurrentTab={setCurrentTab} />
+				<SpecificationsForm setCurrentTab={setCurrentTab} />
 			</div>
 		</main>
 	);

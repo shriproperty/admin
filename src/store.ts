@@ -4,6 +4,7 @@ import usersSlice from "./slices/users.slice";
 import propertiesSlice from "./slices/properties.slice";
 import categorySlice from "./slices/category.slice";
 import propertyTypeSlice from "./slices/propertyType.slice";
+import unitSlice from "./slices/unit.slice";
 
 const store = configureStore({
 	reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
 		properties: propertiesSlice.reducer,
 		categories: categorySlice.reducer,
 		propertyType: propertyTypeSlice.reducer,
+		unit: unitSlice.reducer,
 	},
 });
 

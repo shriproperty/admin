@@ -172,7 +172,7 @@ const BasicDetailsForm: FC<BasicDetailsFormProps> = ({ setCurrentTab }) => {
 					rules={[{ required: true, message: "Category is required" }]}
 				>
 					<Select
-						defaultValue={categories.length > 0 ? categories[0].title : "Apartment"}
+						placeholder="Select a Category"
 						options={categories.map((category) => {
 							return {
 								label: category.title,
@@ -192,9 +192,7 @@ const BasicDetailsForm: FC<BasicDetailsFormProps> = ({ setCurrentTab }) => {
 					rules={[{ required: true, message: "Property Type is required" }]}
 				>
 					<Select
-						defaultValue={
-							propertyTypes.length > 0 ? propertyTypes[0].title : "Apartment"
-						}
+						placeholder="Select Property Type"
 						options={propertyTypes.map((propertyType) => {
 							return {
 								label: propertyType.title,
