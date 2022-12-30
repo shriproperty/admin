@@ -4,6 +4,7 @@ import BasicDetailsForm from "./components/basicDetailsForm";
 import LocationForm from "./components/locationForm";
 import SpecificationsForm from "./components/specifications";
 import FurnishingDetailsForm from "./components/furnishingDetailsForm";
+import FacilitiesForm from "./components/facilitiesForm";
 
 /**
  * TODO: other details
@@ -15,7 +16,7 @@ import FurnishingDetailsForm from "./components/furnishingDetailsForm";
  */
 
 const CreateNewProperty: FC = () => {
-	const [currentTab, setCurrentTab] = useState(3);
+	const [currentTab, setCurrentTab] = useState(4);
 
 	useEffect(() => {
 		const previousTabElement = document.getElementById(String(currentTab - 1));
@@ -44,6 +45,7 @@ const CreateNewProperty: FC = () => {
 						{ title: "Location" },
 						{ title: "Specifications" },
 						{ title: "Furnishing Details" },
+						{ title: "Facilities" },
 					]}
 				/>
 			</div>
@@ -53,6 +55,7 @@ const CreateNewProperty: FC = () => {
 				<LocationForm setCurrentTab={setCurrentTab} />
 				<SpecificationsForm setCurrentTab={setCurrentTab} />
 				<FurnishingDetailsForm setCurrentTab={setCurrentTab} />
+				<FacilitiesForm setCurrentTab={setCurrentTab} />
 			</div>
 		</main>
 	);

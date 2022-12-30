@@ -6,6 +6,7 @@ import categorySlice from "./slices/category.slice";
 import propertyTypeSlice from "./slices/propertyType.slice";
 import unitSlice from "./slices/unit.slice";
 import furnishingStatusSlice from "./slices/furnishingStatus.slice";
+import facilitySlice from "./slices/facilities.slice";
 
 const store = configureStore({
 	reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
 		propertyType: propertyTypeSlice.reducer,
 		unit: unitSlice.reducer,
 		furnishingStatus: furnishingStatusSlice.reducer,
+		facility: facilitySlice.reducer,
 	},
 });
 
