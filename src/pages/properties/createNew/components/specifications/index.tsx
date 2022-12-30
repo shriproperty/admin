@@ -43,7 +43,7 @@ const SpecificationsForm: FC<SpecificationsFormProps> = ({ setCurrentTab }) => {
 					{ whitespace: true, message: "Size must not be empty" },
 				]}
 			>
-				<InputNumber type="number" placeholder="10" min={1} className="!w-full" />
+				<InputNumber type="number" placeholder="10" min={0} className="!w-full" />
 			</Form.Item>
 			{units && units.length > 0 ? (
 				<Form.Item
@@ -126,7 +126,7 @@ const SpecificationsForm: FC<SpecificationsFormProps> = ({ setCurrentTab }) => {
 				name="total_floors"
 				rules={[{ whitespace: true, message: "Total floors must not be empty" }]}
 			>
-				<InputNumber type="number" min={1} className="!w-full" placeholder="2" />
+				<InputNumber type="number" min={0} className="!w-full" placeholder="2" />
 			</Form.Item>
 			<div className="flex w-full justify-between">
 				<Form.Item
@@ -134,7 +134,7 @@ const SpecificationsForm: FC<SpecificationsFormProps> = ({ setCurrentTab }) => {
 					name="bed_rooms"
 					tooltip="How many bed rooms are in your property"
 				>
-					<InputNumber type="number" min={1} className="!w-full" placeholder="3" />
+					<InputNumber type="number" min={0} className="!w-full" placeholder="3" />
 				</Form.Item>
 
 				<Form.Item
@@ -142,7 +142,7 @@ const SpecificationsForm: FC<SpecificationsFormProps> = ({ setCurrentTab }) => {
 					name="bath_rooms"
 					tooltip="How many bath rooms are in your property"
 				>
-					<InputNumber type="number" min={1} className="!w-full" placeholder="3" />
+					<InputNumber type="number" min={0} className="!w-full" placeholder="3" />
 				</Form.Item>
 
 				<Form.Item
@@ -150,7 +150,7 @@ const SpecificationsForm: FC<SpecificationsFormProps> = ({ setCurrentTab }) => {
 					name="kitchens"
 					tooltip="How many kitchens are in your property"
 				>
-					<InputNumber type="number" min={1} className="!w-full" placeholder="1" />
+					<InputNumber type="number" min={0} className="!w-full" placeholder="1" />
 				</Form.Item>
 			</div>
 			<div className="flex w-full justify-between">
@@ -159,7 +159,7 @@ const SpecificationsForm: FC<SpecificationsFormProps> = ({ setCurrentTab }) => {
 					name="living_rooms"
 					tooltip="How many living rooms are in your property"
 				>
-					<InputNumber type="number" min={1} className="!w-full" placeholder="2" />
+					<InputNumber type="number" min={0} className="!w-full" placeholder="2" />
 				</Form.Item>
 
 				<Form.Item
@@ -167,7 +167,7 @@ const SpecificationsForm: FC<SpecificationsFormProps> = ({ setCurrentTab }) => {
 					name="dinning_rooms"
 					tooltip="How many dinning rooms are in your property"
 				>
-					<InputNumber type="number" min={1} className="!w-full" placeholder="1" />
+					<InputNumber type="number" min={0} className="!w-full" placeholder="1" />
 				</Form.Item>
 
 				<Form.Item
@@ -175,7 +175,7 @@ const SpecificationsForm: FC<SpecificationsFormProps> = ({ setCurrentTab }) => {
 					name="store_rooms"
 					tooltip="How many store rooms are in your property"
 				>
-					<InputNumber type="number" min={1} className="!w-full" placeholder="1" />
+					<InputNumber type="number" min={0} className="!w-full" placeholder="1" />
 				</Form.Item>
 			</div>
 			<div className="flex w-full justify-between">
@@ -184,7 +184,7 @@ const SpecificationsForm: FC<SpecificationsFormProps> = ({ setCurrentTab }) => {
 					name="pooja_rooms"
 					tooltip="How many pooja rooms are in your property"
 				>
-					<InputNumber type="number" min={1} className="!w-full" placeholder="1" />
+					<InputNumber type="number" min={0} className="!w-full" placeholder="1" />
 				</Form.Item>
 
 				<Form.Item
@@ -192,7 +192,7 @@ const SpecificationsForm: FC<SpecificationsFormProps> = ({ setCurrentTab }) => {
 					name="other_rooms"
 					tooltip="How many extra rooms are in your property"
 				>
-					<InputNumber type="number" min={1} className="!w-full" placeholder="3" />
+					<InputNumber type="number" min={0} className="!w-full" placeholder="3" />
 				</Form.Item>
 
 				<Form.Item
@@ -200,7 +200,7 @@ const SpecificationsForm: FC<SpecificationsFormProps> = ({ setCurrentTab }) => {
 					name="balconies_rooms"
 					tooltip="How many balconies are in your property"
 				>
-					<InputNumber type="number" min={1} className="!w-full" placeholder="3" />
+					<InputNumber type="number" min={0} className="!w-full" placeholder="3" />
 				</Form.Item>
 			</div>
 			<div className="flex justify-between">

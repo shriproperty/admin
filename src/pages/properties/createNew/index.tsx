@@ -3,6 +3,7 @@ import { FC, useEffect, useState } from "react";
 import BasicDetailsForm from "./components/basicDetailsForm";
 import LocationForm from "./components/locationForm";
 import SpecificationsForm from "./components/specifications";
+import FurnishingDetailsForm from "./components/furnishingDetailsForm";
 
 /**
  * TODO: other details
@@ -14,7 +15,7 @@ import SpecificationsForm from "./components/specifications";
  */
 
 const CreateNewProperty: FC = () => {
-	const [currentTab, setCurrentTab] = useState(2);
+	const [currentTab, setCurrentTab] = useState(3);
 
 	useEffect(() => {
 		const previousTabElement = document.getElementById(String(currentTab - 1));
@@ -42,6 +43,7 @@ const CreateNewProperty: FC = () => {
 						{ title: "Basic Details" },
 						{ title: "Location" },
 						{ title: "Specifications" },
+						{ title: "Furnishing Details" },
 					]}
 				/>
 			</div>
@@ -50,6 +52,7 @@ const CreateNewProperty: FC = () => {
 				<BasicDetailsForm setCurrentTab={setCurrentTab} />
 				<LocationForm setCurrentTab={setCurrentTab} />
 				<SpecificationsForm setCurrentTab={setCurrentTab} />
+				<FurnishingDetailsForm setCurrentTab={setCurrentTab} />
 			</div>
 		</main>
 	);

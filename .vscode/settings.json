@@ -1,4 +1,4 @@
 {
 	"conventionalCommits.scopes": ["style", "API integration", "users"],
-	"cSpell.words": ["IAPI", "Popconfirm", "reduxjs"]
+	"cSpell.words": ["almiras", "IAPI", "Popconfirm", "reduxjs"]
 }
