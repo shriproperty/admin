@@ -6,6 +6,8 @@ import { useNavigate } from "react-router";
 import { useAppSelector } from "../../../../../hooks/useAppSelector";
 import { TRootState } from "../../../../../store";
 import { getAllPropertyTypesHandler } from "../../../../../actions/propertyType.action";
+import { getAllPossessionHandler } from "../../../../../actions/possession.action";
+import { getAllConstructionStatusHandler } from "../../../../../actions/constructionStatus.action";
 
 /**
  * TODO: add following fields
@@ -25,6 +27,10 @@ const BasicDetailsForm: FC<BasicDetailsFormProps> = ({ setCurrentTab }) => {
 	const navigate = useNavigate();
 	const categories = useAppSelector((state: TRootState) => state.categories.records);
 	const propertyTypes = useAppSelector((state: TRootState) => state.propertyType.records);
+	const possession = useAppSelector((state: TRootState) => state.possession.records);
+	const constructionStatus = useAppSelector(
+		(state: TRootState) => state.constructionStatus.records,
+	);
 
 	useEffect(() => {
 		fetchAllFields();
@@ -34,6 +40,8 @@ const BasicDetailsForm: FC<BasicDetailsFormProps> = ({ setCurrentTab }) => {
 		try {
 			await dispatch(getAllCategoriesHandler());
 			await dispatch(getAllPropertyTypesHandler());
+			await dispatch(getAllPossessionHandler());
+			await dispatch(getAllConstructionStatusHandler());
 		} catch (err) {
 			navigate("/properties");
 		}
@@ -165,6 +173,17 @@ const BasicDetailsForm: FC<BasicDetailsFormProps> = ({ setCurrentTab }) => {
 				<Input type="text" placeholder="1%" />
 			</Form.Item>
 
+			<Form.Item
+				label="Property Age"
+				name="property_age"
+				rules={[
+					{ required: true, message: "Property age is required" },
+					{ whitespace: true, message: "Property age must not be empty" },
+				]}
+			>
+				<Input type="text" placeholder="2 years" />
+			</Form.Item>
+
 			{categories.length > 0 && categories ? (
 				<Form.Item
 					label="Category"
@@ -197,6 +216,46 @@ const BasicDetailsForm: FC<BasicDetailsFormProps> = ({ setCurrentTab }) => {
 							return {
 								label: propertyType.title,
 								value: propertyType._id,
+							};
+						})}
+					/>
+				</Form.Item>
+			) : (
+				<Spin />
+			)}
+
+			{possession.length > 0 && possession ? (
+				<Form.Item
+					label="Possession"
+					name="possession"
+					rules={[{ required: true, message: "Possession is required" }]}
+				>
+					<Select
+						placeholder="Select Possession"
+						options={possession.map((poss) => {
+							return {
+								label: poss.title,
+								value: poss._id,
+							};
+						})}
+					/>
+				</Form.Item>
+			) : (
+				<Spin />
+			)}
+
+			{constructionStatus.length > 0 && constructionStatus ? (
+				<Form.Item
+					label="Construction Status"
+					name="construction_status"
+					rules={[{ required: true, message: "Construction status is required" }]}
+				>
+					<Select
+						placeholder="Select construction status"
+						options={constructionStatus.map((status) => {
+							return {
+								label: status.title,
+								value: status._id,
 							};
 						})}
 					/>

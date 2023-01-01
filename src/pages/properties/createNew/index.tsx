@@ -2,21 +2,13 @@ import { Steps } from "antd";
 import { FC, useEffect, useState } from "react";
 import BasicDetailsForm from "./components/basicDetailsForm";
 import LocationForm from "./components/locationForm";
-import SpecificationsForm from "./components/specifications";
+import SpecificationsForm from "./components/specificationsForm";
 import FurnishingDetailsForm from "./components/furnishingDetailsForm";
 import FacilitiesForm from "./components/facilitiesForm";
-
-/**
- * TODO: other details
- * 1) possession
- * 2) maintenance
- * 3) security
- * 4) property age
- * 5) Construction status
- */
+import AttachmentsForm from "./components/attachmentsForm";
 
 const CreateNewProperty: FC = () => {
-	const [currentTab, setCurrentTab] = useState(4);
+	const [currentTab, setCurrentTab] = useState(0);
 
 	useEffect(() => {
 		const previousTabElement = document.getElementById(String(currentTab - 1));
@@ -46,6 +38,7 @@ const CreateNewProperty: FC = () => {
 						{ title: "Specifications" },
 						{ title: "Furnishing Details" },
 						{ title: "Facilities" },
+						{ title: "Attachments" },
 					]}
 				/>
 			</div>
@@ -56,6 +49,7 @@ const CreateNewProperty: FC = () => {
 				<SpecificationsForm setCurrentTab={setCurrentTab} />
 				<FurnishingDetailsForm setCurrentTab={setCurrentTab} />
 				<FacilitiesForm setCurrentTab={setCurrentTab} />
+				<AttachmentsForm setCurrentTab={setCurrentTab} />
 			</div>
 		</main>
 	);

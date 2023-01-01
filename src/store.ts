@@ -7,6 +7,8 @@ import propertyTypeSlice from "./slices/propertyType.slice";
 import unitSlice from "./slices/unit.slice";
 import furnishingStatusSlice from "./slices/furnishingStatus.slice";
 import facilitySlice from "./slices/facilities.slice";
+import possessionSlice from "./slices/possession.slice";
+import constructionStatusSlice from "./slices/constructionStatus.slice";
 
 const store = configureStore({
 	reducer: {
@@ -18,6 +20,8 @@ const store = configureStore({
 		unit: unitSlice.reducer,
 		furnishingStatus: furnishingStatusSlice.reducer,
 		facility: facilitySlice.reducer,
+		possession: possessionSlice.reducer,
+		constructionStatus: constructionStatusSlice.reducer,
 	},
 });
 

@@ -49,6 +49,7 @@
 		"react/destructuring-assignment": "error",
 		"object-curly-spacing": "off",
 		"indent": "off",
+		"@typescript-eslint/no-non-null-assertion": "off",
 		"jsx-quotes": ["error", "prefer-double"],
 		"no-tabs": "off",
 		"space-infix-ops": "off",
