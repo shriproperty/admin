@@ -26,3 +26,19 @@ export const getAllPropertiesHandler = (page: number) => {
 		}
 	};
 };
+
+export const createPropertyHandler = (data: FormData) => {
+	return async () => {
+		try {
+			const res = await API.post<IAPIResponseSuccess>("/properties", data, {
+				headers: {
+					"Content-Type": "multipart/form-data",
+				},
+			});
+
+			return Promise.resolve(res.data);
+		} catch (err) {
+			return Promise.reject(err as AxiosError<IAPIResponseError>);
+		}
+	};
+};

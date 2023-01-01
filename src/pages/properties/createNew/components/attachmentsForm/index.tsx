@@ -1,7 +1,12 @@
-import { Button, Form, Modal, Typography } from "antd";
+import { Button, Form, Modal, Typography, message } from "antd";
 import Upload, { RcFile, UploadFile } from "antd/lib/upload";
 import { PlusOutlined } from "@ant-design/icons";
 import { FC, useState } from "react";
+import { useAppDispatch } from "../../../../../hooks/useAddDispatch";
+import { useAppSelector } from "../../../../../hooks/useAppSelector";
+import { TRootState } from "../../../../../store";
+import { createPropertyHandler } from "../../../../../actions/properties.action";
+import { useNavigate } from "react-router";
 
 interface AttachmentsFormProps {
 	setCurrentTab: (tab: number) => void;
@@ -14,7 +19,12 @@ const AttachmentsForm: FC<AttachmentsFormProps> = ({ setCurrentTab }) => {
 	const [imageFileList, setImageFileList] = useState<UploadFile[]>([]);
 	const [videoFileList, setVideoFileList] = useState<UploadFile[]>([]);
 	const [documentFileList, setDocumentFileList] = useState<UploadFile[]>([]);
+	const [isLoading, setIsLoading] = useState(false);
+	const dispatch = useAppDispatch();
+	const navigate = useNavigate();
 	const handleCancel = () => setPreviewOpen(false);
+
+	const newProperty = useAppSelector((state: TRootState) => state.properties.newProperty);
 
 	const getBase64 = (file: RcFile): Promise<string> =>
 		new Promise((resolve, reject) => {
@@ -62,6 +72,38 @@ const AttachmentsForm: FC<AttachmentsFormProps> = ({ setCurrentTab }) => {
 		return false;
 	};
 
+	const onSubmitHandler = async () => {
+		try {
+			setIsLoading(true);
+
+			const formData = new FormData();
+			imageFileList.forEach((file) => {
+				formData.append("images", file.originFileObj as RcFile);
+			});
+			videoFileList.forEach((file) => {
+				formData.append("videos", file.originFileObj as RcFile);
+			});
+			documentFileList.forEach((file) => {
+				formData.append("documents", file.originFileObj as RcFile);
+			});
+
+			// append new property to form data
+			for (const field in newProperty) {
+				formData.append(field, newProperty[field]);
+			}
+
+			await dispatch(createPropertyHandler(formData));
+			message.success("Property created successfully");
+			navigate("/properties");
+		} finally {
+			setIsLoading(false);
+		}
+	};
+
+	const onPreviousHandler = () => {
+		setCurrentTab(4);
+	};
+
 	const uploadButton = (
 		<div>
 			<PlusOutlined />
@@ -69,7 +111,7 @@ const AttachmentsForm: FC<AttachmentsFormProps> = ({ setCurrentTab }) => {
 		</div>
 	);
 	return (
-		<Form id="5" className="hidden">
+		<Form id="5" className="hidden" onFinish={onSubmitHandler}>
 			<Typography.Title level={2}>Images</Typography.Title>
 
 			<Upload
@@ -134,11 +176,11 @@ const AttachmentsForm: FC<AttachmentsFormProps> = ({ setCurrentTab }) => {
 			</Modal>
 
 			<div className="flex justify-between">
-				<Button type="primary" htmlType="button" onClick={() => setCurrentTab(4)}>
+				<Button type="primary" htmlType="button" onClick={onPreviousHandler}>
 					&larr; Previous
 				</Button>
-				<Button type="primary" htmlType="submit">
-					Next &rarr;
+				<Button type="primary" htmlType="submit" loading={isLoading}>
+					Submit &rarr;
 				</Button>
 			</div>
 		</Form>

@@ -1,14 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { IUser } from "./users.slice";
-import { replacePropertiesReducer } from "../reducers/properties.reducer";
+import { replacePropertiesReducer, updateNewPropertyReducer } from "../reducers/properties.reducer";
 import { ICategory } from "./category.slice";
 
 export interface IPropertyState {
 	records: IProperty[];
+	newProperty: Record<string, any>;
 }
 
 const initialState: IPropertyState = {
 	records: [],
+	newProperty: {},
 };
 
 const propertiesSlice = createSlice({
@@ -16,6 +18,7 @@ const propertiesSlice = createSlice({
 	initialState,
 	reducers: {
 		replaceProperties: replacePropertiesReducer,
+		updateNewProperty: updateNewPropertyReducer,
 	},
 });
 

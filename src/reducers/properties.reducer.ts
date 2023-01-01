@@ -7,3 +7,10 @@ export const replacePropertiesReducer = (
 ) => {
 	state.records = action.payload;
 };
+
+export const updateNewPropertyReducer = (
+	state: IPropertyState,
+	action: PayloadAction<Record<string, any>>,
+) => {
+	state.newProperty = { ...state.newProperty, ...action.payload };
+};

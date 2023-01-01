@@ -8,15 +8,7 @@ import { TRootState } from "../../../../../store";
 import { getAllPropertyTypesHandler } from "../../../../../actions/propertyType.action";
 import { getAllPossessionHandler } from "../../../../../actions/possession.action";
 import { getAllConstructionStatusHandler } from "../../../../../actions/constructionStatus.action";
-
-/**
- * TODO: add following fields
- * 1) Property type
- * 2) Possession
- * 3) Category
- * 4) Construction Status
- * 5) Property Age
- */
+import { propertyActions } from "../../../../../slices/properties.slice";
 
 interface BasicDetailsFormProps {
 	setCurrentTab: (tab: number) => void;
@@ -47,13 +39,18 @@ const BasicDetailsForm: FC<BasicDetailsFormProps> = ({ setCurrentTab }) => {
 		}
 	};
 
+	const onNextHandler = (values: Record<string, any>) => {
+		dispatch(propertyActions.updateNewProperty(values));
+		setCurrentTab(1);
+	};
+
 	return (
 		<Form
 			id="0"
 			className="hidden"
 			autoComplete="off"
 			layout="vertical"
-			onFinish={() => setCurrentTab(1)}
+			onFinish={onNextHandler}
 		>
 			<Form.Item
 				label="Title"

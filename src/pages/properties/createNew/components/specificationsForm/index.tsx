@@ -5,6 +5,7 @@ import { useAppDispatch } from "../../../../../hooks/useAddDispatch";
 import { getAllUnitsHandler } from "../../../../../actions/unit.action";
 import { useAppSelector } from "../../../../../hooks/useAppSelector";
 import { TRootState } from "../../../../../store";
+import { propertyActions } from "../../../../../slices/properties.slice";
 
 interface SpecificationsFormProps {
 	setCurrentTab: (tab: number) => void;
@@ -13,6 +14,7 @@ interface SpecificationsFormProps {
 const SpecificationsForm: FC<SpecificationsFormProps> = ({ setCurrentTab }) => {
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
+	const [form] = Form.useForm();
 	const units = useAppSelector((state: TRootState) => state.unit.records);
 
 	useEffect(() => {
@@ -27,21 +29,29 @@ const SpecificationsForm: FC<SpecificationsFormProps> = ({ setCurrentTab }) => {
 		}
 	};
 
+	const onNextHandler = (values: Record<string, any>) => {
+		dispatch(propertyActions.updateNewProperty(values));
+		setCurrentTab(3);
+	};
+
+	const onPreviousHandler = () => {
+		dispatch(propertyActions.updateNewProperty(form.getFieldsValue()));
+		setCurrentTab(1);
+	};
+
 	return (
 		<Form
 			id="2"
 			className="hidden"
 			layout="vertical"
 			autoComplete="off"
-			onFinish={() => setCurrentTab(3)}
+			form={form}
+			onFinish={onNextHandler}
 		>
 			<Form.Item
 				label="Size"
 				name="size"
-				rules={[
-					{ required: true, message: "Size is required" },
-					{ whitespace: true, message: "Size must not be empty" },
-				]}
+				rules={[{ required: true, message: "Size is required" }]}
 			>
 				<InputNumber type="number" placeholder="10" min={0} className="!w-full" />
 			</Form.Item>
@@ -50,10 +60,7 @@ const SpecificationsForm: FC<SpecificationsFormProps> = ({ setCurrentTab }) => {
 					label="Unit"
 					name="unit"
 					tooltip="Which unit is used to measure size"
-					rules={[
-						{ required: true, message: "Unit is required" },
-						{ whitespace: true, message: "Unit must not be empty" },
-					]}
+					rules={[{ required: true, message: "Unit is required" }]}
 				>
 					<Select
 						placeholder="Select a unit"
@@ -121,11 +128,7 @@ const SpecificationsForm: FC<SpecificationsFormProps> = ({ setCurrentTab }) => {
 			>
 				<Input type="text" placeholder="ground" />
 			</Form.Item>
-			<Form.Item
-				label="Total Floors"
-				name="total_floors"
-				rules={[{ whitespace: true, message: "Total floors must not be empty" }]}
-			>
+			<Form.Item label="Total Floors" name="total_floors">
 				<InputNumber type="number" min={0} className="!w-full" placeholder="2" />
 			</Form.Item>
 			<div className="flex w-full justify-between">
@@ -204,7 +207,7 @@ const SpecificationsForm: FC<SpecificationsFormProps> = ({ setCurrentTab }) => {
 				</Form.Item>
 			</div>
 			<div className="flex justify-between">
-				<Button type="primary" htmlType="button" onClick={() => setCurrentTab(1)}>
+				<Button type="primary" htmlType="button" onClick={onPreviousHandler}>
 					&larr; Previous
 				</Button>
 				<Button type="primary" htmlType="submit">

@@ -1,18 +1,34 @@
 import { Button, Form, Input } from "antd";
 import React, { FC } from "react";
+import { useAppDispatch } from "../../../../../hooks/useAddDispatch";
+import { propertyActions } from "../../../../../slices/properties.slice";
 
 interface LocationFormProps {
 	setCurrentTab: (tab: number) => void;
 }
 
 const LocationForm: FC<LocationFormProps> = ({ setCurrentTab }) => {
+	const dispatch = useAppDispatch();
+	const [form] = Form.useForm();
+
+	const onNextHandler = (values: Record<string, any>) => {
+		dispatch(propertyActions.updateNewProperty(values));
+		setCurrentTab(2);
+	};
+
+	const onPreviousHandler = () => {
+		dispatch(propertyActions.updateNewProperty(form.getFieldsValue()));
+		setCurrentTab(0);
+	};
+
 	return (
 		<Form
 			id="1"
 			className="hidden"
 			autoComplete="off"
 			layout="vertical"
-			onFinish={() => setCurrentTab(2)}
+			onFinish={onNextHandler}
+			form={form}
 		>
 			<Form.Item
 				label="Address"
@@ -70,13 +86,13 @@ const LocationForm: FC<LocationFormProps> = ({ setCurrentTab }) => {
 				label="Country"
 				name="country"
 				rules={[
-					{ required: true, message: "Please fill the State" },
-					{ whitespace: true, message: "State must not be empty" },
-					{ min: 3, message: "State must be at least 3 characters long" },
-					{ max: 30, message: "State must be at most 30 characters long" },
+					{ required: true, message: "Please fill the country" },
+					{ whitespace: true, message: "country must not be empty" },
+					{ min: 3, message: "country must be at least 3 characters long" },
+					{ max: 30, message: "country must be at most 30 characters long" },
 				]}
 			>
-				<Input type="text" placeholder="India" defaultValue="India" />
+				<Input type="text" placeholder="India" />
 			</Form.Item>
 
 			<Form.Item
@@ -97,7 +113,7 @@ const LocationForm: FC<LocationFormProps> = ({ setCurrentTab }) => {
 			</Form.Item>
 
 			<div className="flex justify-between">
-				<Button type="primary" htmlType="button" onClick={() => setCurrentTab(0)}>
+				<Button type="primary" htmlType="button" onClick={onPreviousHandler}>
 					&larr; Previous
 				</Button>
 				<Button type="primary" htmlType="submit">

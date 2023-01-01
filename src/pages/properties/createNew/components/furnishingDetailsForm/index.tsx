@@ -6,6 +6,7 @@ import { useNavigate } from "react-router";
 import { getAllFurnishingStatusHandler } from "../../../../../actions/furnishingStatus.action";
 import { useAppSelector } from "../../../../../hooks/useAppSelector";
 import { TRootState } from "../../../../../store";
+import { propertyActions } from "../../../../../slices/properties.slice";
 
 interface FurnishingDetailsFormProps {
 	setCurrentTab: (tab: number) => void;
@@ -14,6 +15,7 @@ interface FurnishingDetailsFormProps {
 const FurnishingDetailsForm: FC<FurnishingDetailsFormProps> = ({ setCurrentTab }) => {
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
+	const [form] = Form.useForm();
 	const furnishingStatus = useAppSelector((state: TRootState) => state.furnishingStatus.records);
 
 	useEffect(() => {
@@ -28,13 +30,24 @@ const FurnishingDetailsForm: FC<FurnishingDetailsFormProps> = ({ setCurrentTab }
 		}
 	};
 
+	const onNextHandler = (values: Record<string, any>) => {
+		dispatch(propertyActions.updateNewProperty(values));
+		setCurrentTab(4);
+	};
+
+	const onPreviousHandler = () => {
+		dispatch(propertyActions.updateNewProperty(form.getFieldsValue()));
+		setCurrentTab(2);
+	};
+
 	return (
 		<Form
 			id="3"
 			layout="vertical"
 			autoComplete="off"
 			className="hidden"
-			onFinish={() => setCurrentTab(4)}
+			form={form}
+			onFinish={onNextHandler}
 		>
 			<Form.Item
 				label="Furnishing Status"
@@ -222,7 +235,7 @@ const FurnishingDetailsForm: FC<FurnishingDetailsFormProps> = ({ setCurrentTab }
 			</div>
 
 			<div className="flex justify-between">
-				<Button type="primary" htmlType="button" onClick={() => setCurrentTab(2)}>
+				<Button type="primary" htmlType="button" onClick={onPreviousHandler}>
 					&larr; Previous
 				</Button>
 				<Button type="primary" htmlType="submit">
