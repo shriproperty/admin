@@ -42,3 +42,23 @@ export const createPropertyHandler = (data: FormData) => {
 		}
 	};
 };
+
+/**
+ * Get single property from API
+ *
+ * @param uid uid of the property
+ */
+export const getSinglePropertyHandler = (uid: string) => {
+	return async () => {
+		try {
+			interface IResponse extends IAPIResponseSuccess {
+				record: IProperty;
+			}
+
+			const res = await API.get<IResponse>(`/properties/${uid}`);
+			return Promise.resolve(res.data);
+		} catch (err) {
+			return Promise.reject(err as AxiosError<IAPIResponseError>);
+		}
+	};
+};
