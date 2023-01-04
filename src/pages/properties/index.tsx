@@ -6,6 +6,7 @@ import { TRootState } from "../../store";
 import useFormatDate from "../../hooks/useFormatDate";
 import { Table, TablePaginationConfig } from "antd";
 import ApprovedPropertyTag from "./components/approvalTag";
+import { Link } from "react-router-dom";
 
 const Properties: FC = () => {
 	const dispatch = useAppDispatch();
@@ -43,6 +44,9 @@ const Properties: FC = () => {
 			title: "UID",
 			dataIndex: "uid",
 			key: "uid",
+			render: (uid: string) => {
+				return <Link to={`/properties/${uid}`}>{uid}</Link>;
+			},
 		},
 		{
 			title: "Title",

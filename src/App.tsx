@@ -8,6 +8,7 @@ import Login from "./pages/login";
 import ProtectedRoute from "./components/protectedRoute";
 import { useAppDispatch } from "./hooks/useAddDispatch";
 import { getCurrentUserHandler } from "./actions/auth.action";
+import ViewSingleProperty from "./pages/properties/viewSingleProperty";
 
 const Nav = lazy(() => import("./components/nav"));
 const Properties = lazy(() => import("./pages/properties"));
@@ -39,6 +40,7 @@ function App() {
 					<Route element={<ProtectedRoute />}>
 						<Route path="/properties" element={<Properties />} />
 						<Route path="/properties/create" element={<CreateNewProperty />} />
+						<Route path="/properties/:uid" element={<ViewSingleProperty />} />
 						<Route path="/contacts" element={<Contacts />} />
 						<Route path="/users" element={<Users />} />
 						<Route path="/fields" element={<Fields />} />
